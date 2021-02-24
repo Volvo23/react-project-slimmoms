@@ -8,11 +8,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.1",
     "axios": "^0.21.1",
-<<<<<<< HEAD
-    "lodash.debounce": "^4.0.8",
-=======
     "formik": "^2.2.6",
->>>>>>> 312281f22a90bbf326e634ac33c5fb1ecaff1d55
     "install": "^0.13.0",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.1",

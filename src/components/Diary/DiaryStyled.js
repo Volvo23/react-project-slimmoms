@@ -25,21 +25,11 @@ const Wrapper = styled.div`
     position: absolute;
     top: 10%;
     left: 18%;
-<<<<<<< HEAD
-
-}
-.button-svg{
-    height: 50px;
-    width: 50px;
-}
-`
-=======
   }
   .button-svg {
     height: 50px;
     width: 50px;
   }
 `;
->>>>>>> 312281f22a90bbf326e634ac33c5fb1ecaff1d55
 
 export default Wrapper;

@@ -1,104 +1,3 @@
-<<<<<<< HEAD
-import DiaryStyled from './DiaryAddProductStyled'
-import PlusIcon from "../icons/PlusIcon"
-import { searchProductOperation, addNewProductOperation, getCurentDayInfoOperation } from "../../redux/operations/diaryOperations"
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import debounce from 'lodash.debounce'
-import FilterList from './FilterList'
-import DiaryCalendar from './DiaryCalendar'
-
-class DiaryAddProduct extends Component {
-    state = {
-        product: "",
-        weight: "",
-        productId: "",
-        date: "",
-    }
-
-    submitDiaryAddProduct = event => {
-        event.preventDefault();
-        if (this.state.productId && this.state.weight) {
-            this.props.addNewProductOperation({date: this.state.date, productId: this.state.productId,  weight: this.state.weight });
-        }
-    }
-
-    inputHandlerDiaryAddProduct = ({ target }) => {
-        
-        if (target.value === "") {
-            return
-        }
-        this.props.searchProductOperation(target.value);
-    }
-    inputHandlerDiaryAddGramm = (event) => {
-        this.setState((prev) => ({ ...prev, weight: event.target.value }))
-    }
-    
-    filterList = () => {
-    return this.props.productVariables.map(({ title, _id }) => { return {title: title.ru , id: _id}})   
-            .filter((prod, index) => index <= 9 ? true : false)  
-    }
-
-    filterListClickLi = event => {
-       this.setState((prev) => ({...prev, productId: event.target.dataset.id }))
-    }
-
-    setSelectedData = (date) => {
-        this.setState((prev) => ({...prev, date: date }))
-    }
-
-    // componentDidUpdate() {
-    //     console.log(this.state);
-    // }
-
-    render() {
-        const filterList = this.filterList()
-
-        return (
-            <DiaryStyled>
-                <DiaryCalendar setSelectedData={this.setSelectedData} getCurentDayInfoOperation={this.props.getCurentDayInfoOperation}/>
-                <form className="form_add" onSubmit={this.submitDiaryAddProduct} >
-                    <input className="input_add-product" placeholder="Введите название продукта" onChange={debounce(this.inputHandlerDiaryAddProduct, 500)} />
-                    {filterList.length > 0 && <FilterList list={filterList} handleClickLi={this.filterListClickLi} />}
-                    <input className="input_add-gramm" placeholder="Грамм" onChange={this.inputHandlerDiaryAddGramm} />
-                    <button className="button" type="submit" ><PlusIcon width="14" height="14" fill="white" className="svg-add" /></button>
-                    {/* <button className="button" type="submit">Добавить</button> */}
-
-                </form>
-
-            
-                 
-            </DiaryStyled>
-        )
-    }
-}
-const mapStateToPtops = (state) => ({
-    productVariables: state.userDiary.user.productsFound,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    searchProductOperation: query => dispatch(searchProductOperation(query)),
-    addNewProductOperation: product => dispatch(addNewProductOperation(product)),
-    getCurentDayInfoOperation: date => dispatch(getCurentDayInfoOperation(date))
-})
-
-export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
-
-// submitDiaryAddProduct = event => {
-    //     event.preventDefault();
-    //     const { product, weight
-    //         // , id
-    //     } = this.state;
-    //     if (product === '' || weight === '') {
-    //         alert("Внесены не все данные. Пожалуйста, заполните все поля");
-    //         return
-    //     } else if (isNaN(Number(weight))) {
-    //         alert("Некорректный ввод. Используйте только ЧИСЛА");
-    //         return
-    //     }
-
-    // }
-=======
 import DiaryStyled from "./DiaryAddProductStyled";
 import PlusIcon from "../icons/PlusIcon";
 import {
@@ -248,7 +147,6 @@ class DiaryAddProduct extends Component {
               />
             )}
 
-                  
             <input
               className="input_add-gramm"
               placeholder="Грамм"
@@ -282,11 +180,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 
-
-
-
-
-
 // import DiaryStyled from './DiaryAddProductStyled'
 // import PlusIcon from "../icons/PlusIcon"
 // import { searchProductOperation, addNewProductOperation, getCurentDayInfoOperation } from "../../redux/operations/diaryOperations"
@@ -306,7 +199,7 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //         date: "",
 //         windowInnerWidth: window.innerWidth,
 //     }
-    
+
 //     submitDiaryAddProduct = event => {
 //         event.preventDefault();
 //         if (this.state.productId && this.state.weight) {
@@ -321,7 +214,7 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //     }
 
 //     inputHandlerDiaryAddProduct = ({ target }) => {
-        
+
 //         if (target.value === "") {
 //             return
 //         }
@@ -330,10 +223,10 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //     inputHandlerDiaryAddGramm = (event) => {
 //         this.setState((prev) => ({ ...prev, weight: event.target.value }))
 //     }
-    
+
 //     filterList = () => {
-//     return this.props.productVariables.map(({ title, _id }) => { return {title: title.ru , id: _id}})   
-//             .filter((prod, index) => index <= 9 ? true : false)  
+//     return this.props.productVariables.map(({ title, _id }) => { return {title: title.ru , id: _id}})
+//             .filter((prod, index) => index <= 9 ? true : false)
 //     }
 
 //     filterListClickLi = event => {
@@ -352,20 +245,20 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 //         const filterList = this.filterList()
 //         console.log(this.state.windowInnerWidth);
 //         const { windowInnerWidth } = this.state;
- 
+
 //         return (
 //             <DiaryStyled>
 //                 <DiaryCalendar setSelectedData={this.setSelectedData} getCurentDayInfoOperation={this.props.getCurentDayInfoOperation} />
 //                 <form className="form_add" onSubmit={this.submitDiaryAddProduct} >
 //                     {/* <Modal>
-                        
+
 //                     </Modal> */}
 //                     <input className="input_add-product" placeholder="Введите название продукта" onChange={debounce(this.inputHandlerDiaryAddProduct, 500)} />
 //                     {filterList.length > 0 && <FilterList list={filterList} handleClickLi={this.filterListClickLi} />}
 //                         <input className="input_add-gramm" placeholder="Грамм" onChange={this.inputHandlerDiaryAddGramm} />
 //                     {windowInnerWidth >= 768 ? <button className="button" type="submit" className="svg-add" ><PlusIcon width="14" height="14" fill="white" /></button> :
 //                             <button className="button" type="submit">Добавить</button>}
-                    
+
 //                 </form>
 //             </DiaryStyled>
 //         )
@@ -383,4 +276,3 @@ export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
 // })
 
 // export default connect(mapStateToPtops, mapDispatchToProps)(DiaryAddProduct);
->>>>>>> 312281f22a90bbf326e634ac33c5fb1ecaff1d55
